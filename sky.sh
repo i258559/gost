@@ -10,7 +10,7 @@ export PATH
 #=================================================
 
 sh_ver="1.2.5"
-shell_url="https://raw.githubusercontent.com/wf09/gost/master/gost.sh"
+shell_url="https://raw.githubusercontent.com/wf09/gost/master/sky.sh"
 file="/usr/local/gost"
 gost_file="/usr/local/gost/gost"
 gost_conf="/usr/local/gost/config.json"
@@ -71,7 +71,7 @@ check_ver_comparison(){
 			check_pid
 			[[ ! -z $PID ]] &&	{PID}
 			rm -rf ${gost_file}
-			Download_gost
+				
 			Start_gost
 		fi
 	else
