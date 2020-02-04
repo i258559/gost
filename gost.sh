@@ -121,7 +121,7 @@ Installation_dependency(){
 			apt-get install -y gzip
 		fi
 	fi
-	mkdir ${file}
+	[[ ! -e ${file} ]] && mkdir ${file}
 }
 Write_config(){
 	cat > ${gost_conf}<<-EOF
