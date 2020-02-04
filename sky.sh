@@ -15,7 +15,6 @@ file="/usr/local/gost"
 gost_file="/usr/local/gost/gost"
 gost_conf="/usr/local/gost/config.json"
 gost_log="/tmp/gost.log"
-
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
 Error="${Red_font_prefix}[错误]${Font_color_suffix}"
@@ -49,6 +48,7 @@ check_installed_status(){
 }
 check_pid(){
 	PID=$(ps -ef | grep gost | grep -v grep | awk '{print $2}')
+	echo $PID
 }
 check_new_ver(){
 	gost_new_ver=$( wget --no-check-certificate -qO- -t2 -T3 https://api.github.com/repos/ginuerzh/gost/releases| grep "tag_name"| head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g;s/v//g')
@@ -69,7 +69,7 @@ check_ver_comparison(){
 		[ -z "${yn}" ] && yn="y"
 		if [[ ${yn} == [Yy] ]]; then
 			check_pid
-			[[ ! -z $PID ]] && kill -9 ${PID}
+			[[ ! -z $PID ]] &&	{PID}
 			rm -rf ${gost_file}
 			Download_gost
 			Start_gost
@@ -212,7 +212,7 @@ Set_gost_Protocol(){
 	else
 		gost_Protocol="socks5+tls"
 	fi
-	echo && echo ${Separator_1} && echo -e " 协议类型 : ${Green_font_prefix}${ssr_method}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e " 协议类型 : ${Green_font_prefix}${gost_Protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
 } 
 Set_conf(){
 	Set_ip
@@ -311,9 +311,9 @@ Uninstall_gost(){
 		# else
 		update-rc.d -f gost remove
 		# fi
-		echo && echo "gost 卸载完成 !" && echo
+		echo && echo "gost 卸载完成 !"
 	else
-		echo && echo "卸载已取消..." && echo
+		echo && echo "卸载已取消..."
 	fi
 }
 View_gost(){
