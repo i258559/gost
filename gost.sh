@@ -13,7 +13,7 @@ sh_ver="1.2.5"
 shell_url="https://raw.githubusercontent.com/wf09/gost/master/gost.sh"
 file="/usr/local/gost"
 gost_file="/usr/local/gost/gost"
-gost_config="/usr/local/gost/config.json"
+gost_conf="/usr/local/gost/config.json"
 gost_log="/tmp/gost.log"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
