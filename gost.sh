@@ -10,7 +10,7 @@ export PATH
 #=================================================
 
 sh_ver="1.2.5"
-shell_url=""
+shell_url="https://raw.githubusercontent.com/wf09/gost/master/gost.sh"
 file="/usr/local/gost"
 gost_file="/usr/local/gost/gost"
 gost_config="/usr/local/gost/config.json"
@@ -54,7 +54,7 @@ check_new_ver(){
 	gost_new_ver=$( wget --no-check-certificate -qO- -t2 -T3 https://api.github.com/repos/ginuerzh/gost/releases| grep "tag_name"| head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g;s/v//g')
 	gost_new_vver='v'$gost_new_ver
 	if [[ -z ${gost_new_ver} ]]; then
-		echo -e "${Error} gost 最新版本获取失败，请手动获取最新版本号[ https://github.com/jpillora/cloud-torrent/releases ]"
+		echo -e "${Error} gost 最新版本获取失败，请手动获取最新版本号[ https://github.com/ginuerzh/gost/releases ]"
 		read -e -p "请输入版本号 [ 格式 x.x.xx , 如 2.10.0 ] :" gost_new_ver
 		[[ -z "${gost_new_ver}" ]] && echo "取消..." && exit 1
 	else
@@ -102,7 +102,7 @@ Service_gost(){
 		chkconfig --add cloudt
 		chkconfig cloudt on
 	else
-		if ! wget --no-check-certificate "https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/service/cloudt_debian" -O /etc/init.d/gost; then
+		if ! wget --no-check-certificate "https://raw.githubusercontent.com/wf09/gost/master/gost_service" -O /etc/init.d/gost; then
 			echo -e "${Error} Cloud Torrent服务 管理脚本下载失败 !" && exit 1
 		fi
 		chmod +x /etc/init.d/gost
