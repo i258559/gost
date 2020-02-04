@@ -107,7 +107,7 @@ Service_gost(){
 		fi
 		chmod +x /etc/init.d/gost
 		update-rc.d -f gost defaults
-
+	fi
 	echo -e "${Info} Gost服务 管理脚本下载完成 !"
 }
 Installation_dependency(){
