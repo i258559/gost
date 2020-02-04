@@ -48,7 +48,6 @@ check_installed_status(){
 }
 check_pid(){
 	PID=$(ps -ef | grep gost | grep -v grep | awk '{print $2}')
-	echo $PID
 }
 check_new_ver(){
 	gost_new_ver=$( wget --no-check-certificate -qO- -t2 -T3 https://api.github.com/repos/ginuerzh/gost/releases| grep "tag_name"| head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g;s/v//g')
@@ -320,9 +319,9 @@ View_gost(){
 	check_installed_status
 	Read_config
 	host=$(curl -4 ip.sb)
-	port=":${gost_port}"
+	port=${gost_port}
 	echo -e " 你的 gost 信息:" && echo
-	echo -e " 代理:\t: ${Green_font_prefix}${gost_Protocol}://:${gost_port}${Font_color_suffix}"
+	echo -e " 代理:\t ${Green_font_prefix}${gost_Protocol}://:${gost_port}${Font_color_suffix}"
 	# if [[ -z ${user} ]]; then
 		# clear && echo "————————————————" && echo
 		# echo -e " 你的 gost 信息 :" && echo
