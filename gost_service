@@ -32,8 +32,8 @@ check_running(){
 }
 read_config(){
 	[[ ! -e ${CONFIG} ]] && echo -e "${Error} ${NAME} 配置文件不存在 !" && exit 1
-	host=`cat ${CONFIG}|grep "host = "|awk -F "host = " '{print $NF}'`
-	port=`cat ${CONFIG}|grep "port = "|awk -F "port = " '{print $NF}'`
+	gost_Protocol=`cat ${gost_conf}|grep "gost_Protocol = "|awk -F "gost_Protocol = " '{print $NF}'`
+	gost_port=`cat ${gost_conf}|grep "gost_port = "|awk -F "gost_port = " '{print $NF}'`
 	#user=`cat ${CONFIG}|grep "user = "|awk -F "user = " '{print $NF}'`
 	#passwd=`cat ${CONFIG}|grep "passwd = "|awk -F "passwd = " '{print $NF}'`
 }
@@ -87,7 +87,7 @@ do_start(){
 		check_running
 		if [[ $? -eq 0 ]]; then
 			echo -e "${Info} $NAME 启动成功 !"
-			View_User
+			#View_User
 		else
 			echo -e "${Error} $NAME 启动失败(请运行脚本查看日志错误输出) !"
 		fi

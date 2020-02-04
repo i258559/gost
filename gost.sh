@@ -240,7 +240,7 @@ Set_gost(){
 }
 Install_gost(){
 	check_root
-	[[ -e ${ct_file} ]] && echo -e "${Error} 检测到 gost 已安装 !" && exit 1
+	[[ -e ${gost_file} ]] && echo -e "${Error} 检测到 gost 已安装 !" && exit 1
 	check_sys
 	echo -e "${Info} 开始设置 用户配置..."
 	Set_conf
@@ -283,7 +283,7 @@ Restart_gost(){
 }
 Log_gost(){
 	[[ ! -e "${gost_log}" ]] && echo -e "${Error} gost 日志文件不存在 !" && exit 1
-	echo && echo -e "${Tip} 按 ${Red_font_prefix}Ctrl+C${Font_color_suffix} 终止查看日志" && echo -e "如果需要查看完整日志内容，请用 ${Red_font_prefix}cat ${ct_log}${Font_color_suffix} 命令。" && echo
+	echo && echo -e "${Tip} 按 ${Red_font_prefix}Ctrl+C${Font_color_suffix} 终止查看日志" && echo -e "如果需要查看完整日志内容，请用 ${Red_font_prefix}cat ${gost_log}${Font_color_suffix} 命令。" && echo
 	tail -f "${gost_log}"
 }
 Update_gost(){
@@ -309,7 +309,7 @@ Uninstall_gost(){
 		# if [[ ${release} = "centos" ]]; then
 			# chkconfig --del cloudt
 		# else
-			# update-rc.d -f cloudt remove
+		update-rc.d -f gost remove
 		# fi
 		echo && echo "gost 卸载完成 !" && echo
 	else
