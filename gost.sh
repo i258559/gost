@@ -81,9 +81,9 @@ check_ver_comparison(){
 Download_gost(){
 	cd ${file}
 	if [[ ${bit} == "x86_64" ]]; then
-		wget --no-check-certificate -O gost.gz "https://github.com/ginuerzh/gost/releases/download/${gost_new_vver}/gost-linux-amd64-{gost_new_ver}.gz"
+		wget --no-check-certificate -O gost.gz "https://github.com/ginuerzh/gost/releases/download/${gost_new_vver}/gost-linux-amd64-${gost_new_ver}.gz"
 	elif [[ ${bit} == "i386" || ${bit} == "i686" ]]; then
-		wget --no-check-certificate -O gost.gz "https://github.com/ginuerzh/gost/releases/download/${gost_new_vver}/gost-linux-386-{gost_new_ver}.gz"
+		wget --no-check-certificate -O gost.gz "https://github.com/ginuerzh/gost/releases/download/${gost_new_vver}/gost-linux-386-${gost_new_ver}.gz"
 	else
 		echo "该系统不支持..." && exit 1
 	fi
