@@ -141,9 +141,9 @@ Read_config(){
 	# passwd=`cat ${gost_conf}|grep "passwd = "|awk -F "passwd = " '{print $NF}'`
 	clear && echo "===================================================" && echo
 	echo -e " Gost账号 配置信息：" && echo
-	echo -e " I  P\t    : ${Green_font_prefix}${gost_ip}${Font_color_suffix}"
-	echo -e " 端口\t    : ${Green_font_prefix}${gost_port}${Font_color_suffix}"
-	echo -e " 协议类型\t    : ${Green_font_prefix}${gost_Protocol}${Font_color_suffix}"
+	echo -e " I  P\t    :${Green_font_prefix}${gost_ip}${Font_color_suffix}"
+	echo -e " 端口\t    :${Green_font_prefix}${gost_port}${Font_color_suffix}"
+	echo -e " 协议\t    :${Green_font_prefix}${gost_Protocol}${Font_color_suffix}"
 }
 Set_ip(){
 	gost_ip=$(curl -s -4 ip.sb)
