@@ -5,11 +5,11 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Gost - 基于Go语言的代理
-#	Version: 1.2.5
+#	Version: 1.0.0
 #	Author: fly97
 #=================================================
 
-sh_ver="1.2.5"
+sh_ver="1.0.0"
 shell_url="https://raw.githubusercontent.com/wf09/gost/master/sky.sh"
 file="/usr/local/gost"
 gost_file="/usr/local/gost/gost"
@@ -324,8 +324,8 @@ Uninstall_gost(){
 }
 View_gost(){
 	check_installed_status
-	Read_config
-	host=$(curl -4 ip.sb)
+	#Read_config
+	host=$(curl -s -4 ip.sb)
 	port=${gost_port}
 	echo -e " 你的 Gost 信息:" && echo
 	cat $gost_conf
@@ -385,21 +385,31 @@ Update_Shell(){
 	wget -N --no-check-certificate ${shell_url} && chmod +x sky.sh
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
+
+
+Del_log(){
+	[[ ! -e ${gost_log} ]] && echo -e "${Error} Gost 日志文件不存在 !" && exit 1
+	rm -rf ${gost_log}
+	if [[ ! -e ${gost_log} ]] ;then
+		echo -e "${Info} Gost 日志已删除！"
+	fi
+}
 main(){
 	echo && echo -e "Gost 一键管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}	
  ${Green_font_prefix}0.${Font_color_suffix} 升级脚本
-
+ 
  ${Green_font_prefix}1.${Font_color_suffix} 安装 Gost
  ${Green_font_prefix}2.${Font_color_suffix} 升级 Gost
  ${Green_font_prefix}3.${Font_color_suffix} 卸载 Gost
-————————————
+ 
  ${Green_font_prefix}4.${Font_color_suffix} 启动 Gost
  ${Green_font_prefix}5.${Font_color_suffix} 停止 Gost
  ${Green_font_prefix}6.${Font_color_suffix} 重启 Gost
-————————————
+ 
  ${Green_font_prefix}7.${Font_color_suffix} 设置 Gost 账号
  ${Green_font_prefix}8.${Font_color_suffix} 查看 Gost 账号
  ${Green_font_prefix}9.${Font_color_suffix} 查看 Gost 日志
+ ${Green_font_prefix}10.${Font_color_suffix} 删除 Gost 日志 
 ————————————" && echo
 	if [[ -e ${gost_file} ]]; then
 		check_pid
@@ -443,6 +453,9 @@ main(){
 		;;
 		9)
 		Log_gost
+		;;
+		10)
+		Del_log
 		;;
 		*)
 		echo "请输入正确数字 [0-9]"
