@@ -266,6 +266,7 @@ Install_gost(){
 	# Save_iptables
 	echo -e "${Info} 所有步骤 安装完毕，开始启动..."
 	Start_gost
+	Read_config
 }
 Start_gost(){
 	check_installed_status
@@ -306,7 +307,7 @@ Uninstall_gost(){
 	if [[ ${unyn} == [Yy] ]]; then
 		check_pid
 		[[ ! -z $PID ]] && kill -9 ${PID}
-		Read_config
+		#Read_config
 		#Del_iptables
 		#Save_iptables
 		rm -rf ${file} && rm -rf /etc/init.d/gost
