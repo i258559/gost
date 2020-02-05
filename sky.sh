@@ -327,8 +327,8 @@ View_gost(){
 	Read_config
 	host=$(curl -4 ip.sb)
 	port=${gost_port}
-	echo -e " 你的 gost 信息:" && echo
-	echo -e " 代理:\t ${Green_font_prefix}${gost_Protocol}://:${gost_port}${Font_color_suffix}"
+	echo -e " 你的 Gost 信息:" && echo
+	cat $gost_conf
 	# if [[ -z ${user} ]]; then
 		# clear && echo "————————————————" && echo
 		# echo -e " 你的 gost 信息 :" && echo
