@@ -135,13 +135,18 @@ EOF
 }
 Read_config(){
 	[[ ! -e ${gost_conf} ]] && echo -e "${Error} Gost 配置文件不存在 !" && exit 1
-	gost_Protocol=`cat ${gost_conf}|grep "gost_Protocol = "|awk -F "gost_Protocol = " '{print $NF}'`
-	gost_port=`cat ${gost_conf}|grep "gost_port = "|awk -F "gost_port = " '{print $NF}'`
+	#gost_Protocol=`cat ${gost_conf}|grep "gost_Protocol = "|awk -F "gost_Protocol = " '{print $NF}'`
+	#gost_port=`cat ${gost_conf}|grep "gost_port = "|awk -F "gost_port = " '{print $NF}'`
 	# user=`cat ${gost_conf}|grep "user = "|awk -F "user = " '{print $NF}'`
 	# passwd=`cat ${gost_conf}|grep "passwd = "|awk -F "passwd = " '{print $NF}'`
+	clear && echo "===================================================" && echo
+	echo -e " Gost账号 配置信息：" && echo
+	echo -e " I  P\t    : ${Green_font_prefix}${gost_ip}${Font_color_suffix}"
+	echo -e " 端口\t    : ${Green_font_prefix}${gost_port}${Font_color_suffix}"
+	echo -e " 协议类型\t    : ${Green_font_prefix}${gost_Protocol}${Font_color_suffix}"
 }
 Set_ip(){
-	gost_ip=$(curl -4 ip.sb)
+	gost_ip=$(curl -s -4 ip.sb)
 	echo && echo "========================"
 	echo -e "	IP : ${Red_background_prefix} ${gost_ip} ${Font_color_suffix}"
 	echo "========================" && echo
@@ -211,7 +216,7 @@ Set_gost_Protocol(){
 	else
 		gost_Protocol="socks5+tls"
 	fi
-	echo && echo ${Separator_1} && echo -e " 协议类型 : ${Green_font_prefix}${gost_Protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "协议类型 : ${Green_font_prefix}${gost_Protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
 } 
 Set_conf(){
 	Set_ip
@@ -375,7 +380,7 @@ Update_Shell(){
 		rm -rf /etc/init.d/gost
 		Service_gost
 	fi
-	wget -N --no-check-certificate ${shell_url} && chmod +x gost.sh
+	wget -N --no-check-certificate ${shell_url} && chmod +x sky.sh
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
 main(){

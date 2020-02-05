@@ -25,10 +25,10 @@ RETVAL=0
 check_running(){
 	PID=$(ps -ef |grep "${NAME_BIN}" |grep -v "grep" |grep -v "init.d" |grep -v "service" |awk '{print $2}')
 	if [[ ! -z ${PID} ]]; then
-		echo -e "${Info}gost 正在运行！"
+		#echo -e "${Info}gost 正在运行！"
 		return 0
 	else
-		echo -e "${Error}gost 没有运行！"
+		#echo -e "${Error}gost 没有运行！"
 		return 1
 	fi
 }
