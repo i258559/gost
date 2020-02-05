@@ -144,6 +144,7 @@ Read_config(){
 	echo -e " I  P\t:${Red_font_prefix} ${gost_ip} ${Font_color_suffix}"
 	echo -e " 端口\t:${Red_font_prefix} ${gost_port} ${Font_color_suffix}"
 	echo -e " 协议\t:${Red_font_prefix} ${gost_Protocol} ${Font_color_suffix}"
+	echo "===================================================" && echo
 }
 Set_ip(){
 	gost_ip=$(curl -s -4 ip.sb)
@@ -311,7 +312,7 @@ Uninstall_gost(){
 		#Del_iptables
 		#Save_iptables
 		rm -rf ${file} && rm -rf /etc/init.d/gost
-		rm $gost_log
+		[[ -e ${gost_log} ]] && rm $gost_log
 		# if [[ ${release} = "centos" ]]; then
 			# chkconfig --del cloudt
 		# else
